@@ -21,22 +21,29 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tab_category")
-public class Category implements Serializable {
+@Table(name = "tb_product")
+public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String description;
+	private Double price;
+	private String imgUrl;
+
+	public Product(Long id, String name, String description, Double price, String imgUrl) {
+
+		this.id = id;
+
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.imgUrl = imgUrl;
+	}
 
 	@Transient
 	@Setter(value = AccessLevel.NONE)
-	private Set<Product> products = new HashSet<>();
-
-	public Category(Long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-
+	private Set<Category> categories = new HashSet<>();
 }
